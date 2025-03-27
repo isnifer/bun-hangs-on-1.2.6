@@ -17,6 +17,8 @@ function RootComponent() {
   const [state, setState] = useState<'LOADING' | 'SUCCESS' | null>(null)
   const session = authClient.useSession()
 
+  const [logoutState, setLogoutState] = useState<'LOADING' | 'SUCCESS' | null>(null)
+
   return (
     <RootDocument>
       <p>Hello{session.data?.user.name ? ` ${session.data.user.name}` : ', please click button'}</p>
@@ -33,6 +35,21 @@ function RootComponent() {
       {state === 'SUCCESS' && <p>Success</p>}
       <br />
       <Outlet />
+      <br />
+      {session.data?.user.name && (
+        <div>
+          <button
+            disabled={logoutState === 'LOADING'}
+            onClick={() => {
+              setLogoutState('LOADING')
+              authClient.signOut().then(() => setLogoutState('SUCCESS'))
+            }}>
+            Sign out
+          </button>
+          {logoutState === 'LOADING' && <p>Signing out...</p>}
+          {logoutState === 'SUCCESS' && <p>Signed out</p>}
+        </div>
+      )}
     </RootDocument>
   )
 }

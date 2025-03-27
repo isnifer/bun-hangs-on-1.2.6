@@ -30,5 +30,8 @@
     "prisma": "6.5.0",
     "typescript": "5.8.2",
     "vite-tsconfig-paths": "5.1.4"
+  },
+  "patchedDependencies": {
+    "better-call@1.0.5": "patches/better-call@1.0.5.patch"
   }
 }

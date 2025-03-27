@@ -1,0 +1,16 @@
+diff --git a/dist/index.js b/dist/index.js
+index f6788553e6cca9aafee27b82f739f94f16acb93c..a8a3d6cf70372670ed715663df69cfa051ec2da0 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -77,7 +77,10 @@ async function getBody(request) {
+     return void 0;
+   }
+   if (contentType.includes("application/json")) {
+-    return await request.json();
++    console.log('TRYING TO GET BODY')
++    const result = await request.json();
++    console.log('GOT BODY', result)
++    return result;
+   }
+   if (contentType.includes("application/x-www-form-urlencoded")) {
+     const formData = await request.formData();
