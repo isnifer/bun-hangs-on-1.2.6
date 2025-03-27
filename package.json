@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bunx --bun vinxi dev",
+    "dev": "BETTER_AUTH_SECRET=54101f0660e929aefe6fa3ff805148bf11f0a0166552d15c5fb784471a235fdf BETTER_AUTH_URL=http://localhost:3000 bunx --bun vinxi dev",
     "build": "bunx --bun vinxi build",
     "start": "bunx --bun vinxi start"
   },
