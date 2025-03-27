@@ -1,0 +1,34 @@
+{
+  "name": "bun-issue-126",
+  "module": "index.ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vinxi dev",
+    "build": "bunx --bun vinxi build",
+    "start": "bunx --bun vinxi start"
+  },
+  "dependencies": {
+    "@prisma/client": "6.5.0",
+    "@tanstack/react-router": "1.114.29",
+    "@tanstack/react-start": "1.114.29",
+    "better-auth": "1.2.5",
+    "better-sqlite3": "11.9.1",
+    "hono": "^4.7.5",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "vinxi": "0.5.3"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "5.2.2",
+    "@types/better-sqlite3": "7.6.12",
+    "@types/bun": "latest",
+    "@types/react": "19.0.12",
+    "@types/react-dom": "19.0.4",
+    "@vitejs/plugin-react": "4.3.4",
+    "prettier": "3.5.3",
+    "prisma": "6.5.0",
+    "typescript": "5.8.2",
+    "vite-tsconfig-paths": "5.1.4"
+  }
+}
