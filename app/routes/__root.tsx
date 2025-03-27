@@ -1,5 +1,5 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
-import type { ReactNode } from 'react'
+import { type ReactNode, useState } from 'react'
 import authClient from '../auth.client'
 
 export const Route = createRootRoute({
@@ -11,19 +11,27 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
-  // beforeLoad: async () => {
-  //   const session = await authClient.getSession()
-  //   return session
-  // },
 })
 
 function RootComponent() {
-  // const { data } = Route.useRouteContext()
+  const [state, setState] = useState<'LOADING' | 'SUCCESS' | null>(null)
+  const session = authClient.useSession()
 
   return (
     <RootDocument>
-      {/* <p>Hello {data?.user.name}</p> */}
-      <button onClick={() => authClient.signIn.anonymous()}>Sign in anonymously</button>
+      <p>Hello{session.data?.user.name ? ` ${session.data.user.name}` : ', please click button'}</p>
+      <button
+        disabled={state === 'LOADING' || !!session.data?.user.name}
+        onClick={() => {
+          setState('LOADING')
+          authClient.signIn.anonymous().then(() => setState('SUCCESS'))
+        }}>
+        Sign in anonymously
+      </button>
+      <br />
+      {state === 'LOADING' && <p>Loading...</p>}
+      {state === 'SUCCESS' && <p>Success</p>}
+      <br />
       <Outlet />
     </RootDocument>
   )
